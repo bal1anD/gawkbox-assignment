@@ -1,5 +1,54 @@
 ## Remote Assignment V3
 
+OVERVIEW
+========================================================================================================
+
+This project is a basic integration with Twitch API, written in Go. Th objective is give the callers the
+following information about a Twitch username:
+
+● user’s channel’s # of views
+● user’s channel’s # of followers
+● user’s channel’s game
+● user’s channel’s language
+● if the user is currently streaming
+● user’s display name
+● user’s bio
+● user’s account creation date
+
+
+
+DESIGN
+========================================================================================================
+
+The above information has been divided into 2 endpoints depending on the relation between them. These are
+classified as : 
+1) User info (user's bio, display name, account creation date)
+2) Channel info( # of view, # of followers, game, language, streaming or not)
+
+the reason behind having 2 endpoints is that, this is that the data vended as response to these endpoints
+are related and are likely to be used together. Also, the payload is also of a reasonable size.
+It doesn't seem to be of much value to have separate endpoint for each of these information because it 
+might force the clients to make multiple calls to piece together the data.
+
+IMPLEMENTATION DETAILS
+=========================================================================================================
+
+Code is divided into 
+1) Controllers : Thin layer for the handling the requests made to this service
+2) Router : A basic router for mapping the requests to the correct controller method.
+3) Service : Is called by the controller. It performs some logic such as storing/fetching from local cache.
+             It calls the twitch api in the api.go file.
+
+4) Model : stores the data structure used in the service.
+         
+5) localcache: it's a map for maintaining username->userId mapping. This helps us in saving 1 call to the
+               twitch API when the user requests for the channel information. The channel endpoint of
+               twitch requires a userId, whereas in this service the client is asked for the username.
+6) Dockerfile: for running the service as a docker container.
+
+Note: The caching works as long as the service is running it's dropped when the service stops.
+      This is a prototype, for production grade service it requires distributed caching (such as redis).    
+               
 API DESCRIPTION
 ========================================================================================================================
 Currently supports the following endpoints:
