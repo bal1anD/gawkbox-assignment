@@ -18,9 +18,9 @@ func Route(w http.ResponseWriter, r *http.Request) {
 	p := strings.Split(r.URL.Path, "/")
 
 	if(p[1]=="users" && p[3]=="channel") {
-		controllers.GetChannelInfo(w,p[2])
+		controllers.GetChannelInfoController(w,p[2])
 	}else if (p[1]=="users" && p[3]=="info") {
-		controllers.GetUserInfo(w,p[2])
+		controllers.GetUserInfoController(w,p[2])
 	}
 }
 

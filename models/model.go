@@ -2,8 +2,8 @@ package models
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
+	"fmt"
 )
 
 type User struct {

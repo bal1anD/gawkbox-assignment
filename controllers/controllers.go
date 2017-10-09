@@ -14,7 +14,7 @@ func GetUserInfo(w http.ResponseWriter, username string) {
 	var userInfo = services.GetUserInfo(username)
 	if reflect.DeepEqual(models.User{}, userInfo){
 		w.WriteHeader(http.StatusNotFound)
-		var e = fmt.Errorf("Displayname not found")
+		var e = fmt.Errorf("Userinfo not found")
 		prepareResp(nil,e,w)
 	} else {
 		jsonResp, err := json.Marshal(userInfo)

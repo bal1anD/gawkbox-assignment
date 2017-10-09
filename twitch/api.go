@@ -87,7 +87,7 @@ func getChannel(r *http.Response)  models.Channel {
 	bodyInBytes, _ := ioutil.ReadAll(r.Body);
 	err := json.Unmarshal(bodyInBytes, twitchUserModel)
 	if err != nil {
-		fmt.Println("Something went wrong")
+		fmt.Println("Failed to unmarshall")
 		return *twitchUserModel
 	}
 
@@ -101,7 +101,7 @@ func getJson(r *http.Response)  models.User {
 	bodyInBytes, _ := ioutil.ReadAll(r.Body);
 	err := json.Unmarshal(bodyInBytes, twitchUserModel)
 	if err != nil {
-		fmt.Println("Something went wrong")
+		fmt.Println("Failed to unmarshall")
 		return *twitchUserModel
 	}
 
