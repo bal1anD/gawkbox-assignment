@@ -137,7 +137,7 @@ Example:
 you will see that the service is started at port 8080. 
 
 
-2) Running without Docker
+2 ) Running without Docker
 ----------------------
 
 2.1) The first two steps are same as 1.1 and 1.2 above.
