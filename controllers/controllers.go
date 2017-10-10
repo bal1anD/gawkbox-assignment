@@ -60,6 +60,7 @@ func DefaultPathController(w http.ResponseWriter) {
 		" supported path: [{User info: /users/{username}/info}," +
 		" {Channel info: /users/{username}/channel}]}"
 	jsonResp, err := json.Marshal(allowedPaths)
+	w.WriteHeader(http.StatusNotFound)
 	prepareResp(jsonResp, err, w)
 
 }
